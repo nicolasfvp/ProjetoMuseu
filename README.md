@@ -1,103 +1,75 @@
-# Documentação do Projeto
+# Museu Historico de Sao Jose
 
-## Visão Geral
-Este projeto é uma landing page responsiva para o Museu Histórico de São José, desenvolvida com **Next.js** e **Tailwind CSS**. O objetivo é proporcionar uma experiência imersiva para os visitantes, incluindo um **tour 3D interativo**.
+A responsive landing page for the Museu Historico de Sao Jose, a city history museum in Brazil. The site presents the museum through image galleries, video sections, and an interactive 360 degree 3D tour rendered in the browser.
 
-## Tecnologias Utilizadas
-- **Next.js** (React Framework)
-- **Tailwind CSS** (Estilização)
-- **TypeScript** (Tipagem)
-- **Three.js** (para o tour 3D)
+## Tech stack
 
-## Como Rodar o Projeto
-### 1. Clonar o Repositório
+- Next.js 14 with the App Router
+- React 18
+- TypeScript
+- Tailwind CSS
+- Three.js for the 3D tour and 3D object viewer
+- Embla Carousel for the interactive carousels
+- Radix UI and shadcn/ui components
+- lucide-react and react-icons for iconography
+
+## What it does
+
+- Home page with a mobile first responsive layout and museum introduction.
+- Interactive 360 degree tour that maps a panoramic photo onto an inverted sphere with clickable info markers (`src/components/Tour3D.tsx`, page at `src/app/tour`).
+- 3D object viewer that loads a GLTF model with orbit controls (`src/components/ThreeScene.tsx`, page at `src/app/exposicoes/three`).
+- Collection pages showing museum pieces, including a full collection view (`src/app/acervo`).
+- Exhibitions, articles, and piece of the month pages (`src/app/exposicoes`, `src/app/artigos`, `src/app/pecaMes`).
+- Video gallery that plays museum videos in a responsive grid (`src/components/VideoGallery.tsx`, page at `src/app/videos`).
+- About page describing the museum (`src/app/about`).
+- Reusable UI: header, footer, interactive carousels, cards, and gallery sections.
+
+Text and images are currently static mocks. The layout was designed so these can later be fed from an API.
+
+## Running locally
+
+Clone the repository:
+
 ```bash
-git clone https://github.com/nicolasfvp/ProjetoMuseu.git
-cd nome-do-projeto
+git clone https://github.com/nicolasfvp/museum-3d-tour.git
+cd museum-3d-tour
 ```
 
-### 2. Instalar Dependências
+Install dependencies:
+
 ```bash
 npm install
-# ou
-yarn install
 ```
 
-### 3. Rodar o Servidor de Desenvolvimento
+Start the development server:
+
 ```bash
 npm run dev
-# ou
-yarn dev
 ```
 
-Acesse `http://localhost:3000` no navegador para ver a aplicação em funcionamento.
-### 4. Rodar o Servidor definitivo
+Open `http://localhost:3000` in your browser.
 
-Inicialmente, execute: 
+To build and run a production version:
 
 ```bash
 npm run build
-```
-
-Este comando irá gerar uma versão otimizada do site, porém qualquer erro no código pode impossibilizar o build e deve ser corrigido
-
-após o build
-
-```bash
 npm run start
 ```
 
-Acesse `http://localhost:3000` no navegador para ver a aplicação em funcionamento.
+## Project structure
 
-# Boas práticas
-
-### O projeto foi criado em Next.JS com Tailwind.CSS, utilizando conceitos de MobileFirst.
-Em resumo, caso altere a estrutura do código, tome *MUITO* cuidado para não alterar as boas práticas.
-Toda a responsividade do site gira em torno do MobileFirst. Os estilos em comum permanecem inalterados, mas os estilos que são diferentes para mobile e web devem ser feitos da seguinte forma:
-
-ClassName=" estilo-para-mobile md:estilo-para-web"
-
-mantendo esta estrutura a responsividade do site deve ser facilmente ajustada.
-
-#Utilize apenas as novas versões do Next!
-
-todas as maiores funcionalidades do site estão feitas conforme as boas práticas das versões mais recentes do next, então, em caso de novas alterações, olhe para o restante do código e não adicione nenhuma sintaxe nova, pois provavelmente estará errada.
-
-# Futuras alterações 
-
-O site foi desenhado para que todos as imagens e textos sejam dinamicos a partir de uma API. Esta API deve ser criada, juntamente ao banco de dados e uma interface gráfica para o gestor administrar o site de forma simples e segura apenas realizando requisições para a API. Após a conclusão da mesma, os Mocks de imagens e texto do site devem ser substituidos pelo retorno da requisição para a API, tornando o site dinâmico às alterações.
-
-## Estrutura do Projeto
 ```
-/
-├── components/       # Componentes reutilizáveis
-├── public/           # Arquivos estáticos (imagens, fontes)
-├── src/              # Diretório fonte do projeto
-|   ├── app/          # Páginas da aplicação
-│     ├── globals.css # arquivo css geral (utilizar apenas para configurações globais, para estilizações de pagina utilizar as classes tailwind.)
-│     ├── page.tsx    # Página principal (Home)
-│     ├── about       # pagina sobre
-│     ├── acervo      # pagina acervo
-│     ├── tour        # pagina tour3D
-│     ├── ...         # dentre outros
-|   ├── components/   # Diretório dos componentes
-│     ├── footer.tsx  # Footer do site
-│     ├── header.tsx  # header do site
-│     ├── tour3D.tsc  # componente do tour 3D
-│     ├── ...         # dentre outros
-├── package.json      # Configuração de dependências
-├── tsconfig.json     # Configuração do TypeScript
-└── next.config.js    # Configuração do Next.js
+public/            Static assets (images, fonts, videos, 3D models)
+src/app/           App Router pages (home, about, acervo, tour, exposicoes, videos, ...)
+src/components/    Reusable components (Header, Footer, Tour3D, ThreeScene, carousels, ...)
+src/components/ui/ shadcn/ui primitives (button, carousel)
+src/lib/           Shared utilities
 ```
 
-## Padrões e Boas Práticas
-- **Componentização**: Componentes reutilizáveis para facilitar a manutenção.
-- **Responsividade**: Uso de Tailwind CSS para adaptação a diferentes tamanhos de tela.
-- **Code Style**: Uso de **ESLint e Prettier** para manter a uniformidade do código.
-- **Performance**: Imagens otimizadas e uso de **lazy loading**.
+## Status
 
-## Considerações Finais
-Caso precise adicionar novas funcionalidades ou realizar manutenção, siga os padrões estabelecidos e consulte a documentação do Next.js e Tailwind CSS.
+Personal and academic project. The interface is complete with static content, and it is prepared to be connected to an API for dynamic data in the future.
 
-Se tiver dúvidas, entre em contato comigo pelo email: nicolasfvp11@gmail.com. 🚀
+## License
 
+Released under the MIT License. See the LICENSE file for details.
